@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/', function () {
-        return redirect()->route('clientes.index');
+        return redirect()->route('dashboard');
     });
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);
