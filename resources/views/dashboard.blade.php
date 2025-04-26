@@ -101,20 +101,14 @@
               </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-              <!--begin::User Image-->
-
-              <!--end::User Image-->
-              <!--begin::Menu Body-->
-
-              <!--end::Menu Body-->
-              <!--begin::Menu Footer-->
-              <li class="user-footer">
-                <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
+              
+              
+                <!-- <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a> -->
                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                   @csrf
                   <button type="submit" class="btn btn-default btn-flat float-end">Sign out</button>
                 </form>
-              </li>
+             
               <!--end::Menu Footer-->
             </ul>
           </li>
@@ -138,7 +132,7 @@
             class="brand-image opacity-75 shadow" />
           <!--end::Brand Image-->
           <!--begin::Brand Text-->
-          <span class="brand-text fw-light">AdminLTE 4</span>
+          <span class="brand-text fw-light">Edoiaza</span>
           <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -153,11 +147,14 @@
             data-lte-toggle="treeview"
             role="menu"
             data-accordion="false">
+
+            <li class="nav-header">TAREAS</li>
+
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon bi bi-speedometer"></i>
                 <p>
-                  Dashboard
+                  Clientes
                   <i class="nav-arrow bi bi-chevron-right"></i>
                 </p>
               </a>
@@ -165,10 +162,15 @@
                 <li class="nav-item">
                   <a href="./index.html" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
-                    <p>Dashboard v1</p>
+                    <p>Nuevo cliente</p>
                   </a>
-               </li>
-                 
+               </li>     
+               <li class="nav-item">
+                  <a href="./index.html" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver clientes</p>
+                  </a>
+               </li>             
               </ul>
             </li>
             
@@ -176,7 +178,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon bi bi-pencil-square"></i>
                 <p>
-                  Forms
+                  Prestamos
                   <i class="nav-arrow bi bi-chevron-right"></i>
                 </p>
               </a>
@@ -184,7 +186,13 @@
                 <li class="nav-item">
                   <a href="./forms/general.html" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
-                    <p>General Elements</p>
+                    <p>Nuevo prestamo</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./forms/general.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver prestamos</p>
                   </a>
                 </li>
               </ul>
@@ -206,8 +214,6 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-header">EXAMPLES</li>
-            
           </ul>
           <!--end::Sidebar Menu-->
         </nav>
@@ -250,7 +256,7 @@
               <div class="small-box text-bg-primary">
                 <div class="inner">
                   <h3>150</h3>
-                  <p>New Orders</p>
+                  <h1>Clientes</h1>
                 </div>
                 <svg
                   class="small-box-icon"
@@ -264,7 +270,7 @@
                 <a
                   href="#"
                   class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                  More info <i class="bi bi-link-45deg"></i>
+                  <i class="bi bi-link-45deg"></i>
                 </a>
               </div>
               <!--end::Small Box Widget 1-->
@@ -275,7 +281,7 @@
               <div class="small-box text-bg-success">
                 <div class="inner">
                   <h3>53<sup class="fs-5">%</sup></h3>
-                  <p>Bounce Rate</p>
+                  <h1>Prestamos</h1>
                 </div>
                 <svg
                   class="small-box-icon"
@@ -289,7 +295,7 @@
                 <a
                   href="#"
                   class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                  More info <i class="bi bi-link-45deg"></i>
+                  <i class="bi bi-link-45deg"></i>
                 </a>
               </div>
               <!--end::Small Box Widget 2-->
@@ -300,7 +306,7 @@
               <div class="small-box text-bg-warning">
                 <div class="inner">
                   <h3>44</h3>
-                  <p>User Registrations</p>
+                  <h1>Pagos</h1>
                 </div>
                 <svg
                   class="small-box-icon"
@@ -314,7 +320,7 @@
                 <a
                   href="#"
                   class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover">
-                  More info <i class="bi bi-link-45deg"></i>
+                  <i class="bi bi-link-45deg"></i>
                 </a>
               </div>
               <!--end::Small Box Widget 3-->
@@ -325,7 +331,7 @@
               <div class="small-box text-bg-danger">
                 <div class="inner">
                   <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <h1>Utilidad</h1>
                 </div>
                 <svg
                   class="small-box-icon"
@@ -345,7 +351,7 @@
                 <a
                   href="#"
                   class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                  More info <i class="bi bi-link-45deg"></i>
+                  <i class="bi bi-link-45deg"></i>
                 </a>
               </div>
               <!--end::Small Box Widget 4-->
