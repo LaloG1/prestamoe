@@ -36,12 +36,17 @@ Route::middleware('auth')->group(function () {
         return view('clientes.create');
     })->name('clientes.create');
 
+    Route::get('/prestamos', function () {
+        return view('prestamos.index');
+    })->name('prestamos.index');
+
     // Ruta básica
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);
 
     Route::post('/pagos', [PagoController::class, 'store'])->name('pagos.store');
     Route::delete('/pagos/{pago}', [PagoController::class, 'destroy'])->name('pagos.destroy');
+    
 });
 
 require __DIR__ . '/auth.php';

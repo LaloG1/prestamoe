@@ -190,7 +190,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./forms/general.html" class="nav-link">
+                <a href="{{ route('prestamos.index') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Ver prestamos</p>
                   </a>

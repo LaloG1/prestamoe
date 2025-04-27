@@ -33,6 +33,7 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
+        
         $cliente->load('prestamos'); // Carga los préstamos relacionados
         return view('clientes.show', compact('cliente'));
     }
