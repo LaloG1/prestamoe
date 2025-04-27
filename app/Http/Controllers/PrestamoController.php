@@ -42,9 +42,15 @@ class PrestamoController extends Controller
         return view('prestamos.show', compact('prestamo'));
     }
 
+    // PrestamoController.php
     public function edit(Prestamo $prestamo)
     {
-        $clientes = Cliente::all();
+        $clientes = Cliente::all(); // Asegúrate de importar el modelo Cliente
+
+        if (request()->ajax()) {
+            return view('prestamos._form', compact('prestamo', 'clientes'));
+        }
+
         return view('prestamos.edit', compact('prestamo', 'clientes'));
     }
 

@@ -275,7 +275,7 @@
                             @endif
 
                             <p><strong>Cliente:</strong> {{ $prestamo->cliente->nombre }}</p>
-                            <p><strong>Monto:</strong> ${{ number_format($prestamo->monto, 2) }}</p>
+                            <p><strong>Monto:</strong> ${{ number_format($prestamo->monto) }}</p>
                             <p><strong>Interés:</strong> {{ $prestamo->interes }}%</p>
                             <p><strong>Estado:</strong> {{ ucfirst($prestamo->estado) }}</p>
                             <p><strong>Notas:</strong> {{ $prestamo->notas }}</p>
@@ -286,7 +286,7 @@
                             $interesTotal = $prestamo->monto * ($prestamo->interes / 100);
                             @endphp
 
-                            <p><strong>Interés semanal a pagar:</strong> ${{ number_format($interesTotal, 2) }}</p>
+                            <p><strong>Interés semanal a pagar:</strong> ${{ number_format($interesTotal) }}</p>
 
                             <!-- Botón para abrir el modal o mostrar pago completado -->
                             <button
@@ -351,7 +351,7 @@
                                     @foreach ($prestamo->pagos as $pago)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>${{ number_format($pago->monto, 2) }}</td>
+                                        <td>${{ number_format($pago->monto) }}</td>
                                         <td>{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}</td>
                                         <td>
                                             <form action="{{ route('pagos.destroy', $pago) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este pago?');">
@@ -368,7 +368,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Total Pagado</th>
-                                        <th colspan="3">${{ number_format($prestamo->pagos->sum('monto'), 2) }}</th>
+                                        <th colspan="3">${{ number_format($prestamo->pagos->sum('monto')) }}</th>
                                     </tr>
                                 </tfoot>
                             </table>

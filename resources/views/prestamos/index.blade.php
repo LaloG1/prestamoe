@@ -277,21 +277,59 @@
                             @foreach ($prestamos as $prestamo)
                             <tr>
                                 <td>{{ $prestamo->cliente->nombre }}</td>
-                                <td>${{ number_format($prestamo->monto, 2) }}</td>
+                                <td>${{ number_format($prestamo->monto) }}</td>
                                 <td>{{ $prestamo->interes }}%</td>
                                 <td>
-                                    ${{ number_format($prestamo->monto * ($prestamo->interes / 100), 2) }}
+                                    ${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}
                                 </td>
                                 <td>{{ ucfirst($prestamo->estado) }}</td>
                                 <td>
                                     <a href="{{ route('prestamos.show', $prestamo) }}" class="btn btn-sm btn-info">Ver</a>
-                                    <a href="{{ route('prestamos.edit', $prestamo) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <button class="btn btn-sm btn-warning edit-prestamo">Editar</button>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="editPrestamoModal" tabindex="-1" aria-labelledby="editPrestamoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editPrestamoModalLabel">Editar Préstamo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Formulario para editar el préstamo -->
+                                <form id="editPrestamoForm">
+                                    <div class="mb-3">
+                                        <label for="cliente" class="form-label">Cliente</label>
+                                        <input type="text" class="form-control" id="cliente" name="cliente" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="monto" class="form-label">Monto</label>
+                                        <input type="number" class="form-control" id="monto" name="monto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="interes" class="form-label">Interés (%)</label>
+                                        <input type="number" class="form-control" id="interes" name="interes">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="estado" class="form-label">Estado</label>
+                                        <select class="form-control" id="estado" name="estado">
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
                 <!--end::Container-->
@@ -561,6 +599,53 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
             }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Cuando se presiona el botón "Editar"
+        $(".edit-prestamo").click(function() {
+            // Obtener los datos del préstamo desde la fila
+            var tr = $(this).closest("tr");
+            var cliente = tr.find("td:nth-child(1)").text();
+            var monto = tr.find("td:nth-child(2)").text().replace('$', '').replace(',', '');
+            var interes = tr.find("td:nth-child(3)").text().replace('%', '');
+            var estado = tr.find("td:nth-child(5)").text().toLowerCase();
+
+            // Asignar los valores al formulario del modal
+            $("#cliente").val(cliente);
+            $("#monto").val(monto);
+            $("#interes").val(interes);
+            $("#estado").val(estado);
+
+            // Mostrar el modal
+            $("#editPrestamoModal").modal('show');
+        });
+
+        // Enviar el formulario del modal para guardar los cambios
+        $("#editPrestamoForm").submit(function(event) {
+            event.preventDefault();
+
+            // Recoger los datos del formulario
+            var formData = $(this).serialize();
+
+            // Hacer una solicitud AJAX para actualizar el préstamo
+            $.ajax({
+                url: "/prestamos/update", // Cambia esta URL según la ruta de tu controlador
+                method: "POST",
+                data: formData,
+                success: function(response) {
+                    // Cerrar el modal
+                    $("#editPrestamoModal").modal('hide');
+                    // Actualizar la tabla o mostrar un mensaje de éxito
+                    alert("Préstamo actualizado exitosamente");
+                },
+                error: function() {
+                    alert("Hubo un error al actualizar el préstamo");
+                }
+            });
         });
     });
 </script>
