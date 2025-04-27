@@ -170,7 +170,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                <a href="{{ route('clientes.create') }}" class="nav-link active">
+                                    <a href="{{ route('clientes.create') }}" class="nav-link active">
                                         <i class="nav-icon bi bi-circle"></i>
                                         <p>Nuevo cliente</p>
                                     </a>
@@ -259,7 +259,7 @@
                 <!--begin::Container-->
 
                 <div class="container">
-                    
+
                     <!-- <a href="{{ route('clientes.create') }}" class="btn btn-primary">Nuevo Cliente</a> -->
                     <table id="clientesTable" class="table mt-3">
                         <thead>
@@ -273,17 +273,53 @@
                         <tbody>
                             @foreach ($clientes as $cliente)
                             <tr>
-                                <td>{{ $cliente->nombre }}</td>
+                                <td data-id="{{ $cliente->id }}">{{ $cliente->nombre }}</td>
                                 <td>{{ $cliente->telefono }}</td>
                                 <td>{{ $cliente->notas }}</td>
                                 <td>
                                     <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-sm btn-info">Ver</a>
-                                    <a href="{{ route('clientes.edit', $cliente) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="#" class="btn btn-sm btn-warning">Editar</a> <!-- Botón de editar -->
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
+
                     </table>
+                </div>
+
+                <!-- Modal de Edición -->
+                <div class="modal fade" id="editClienteModal" tabindex="-1" aria-labelledby="editClienteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editClienteModalLabel">Editar Cliente</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Formulario de edición del cliente -->
+                                <form id="editClienteForm">
+                                    <input type="hidden" id="cliente_id" name="cliente_id">
+
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="telefono" class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono" name="telefono" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="notas" class="form-label">Notas</label>
+                                        <textarea class="form-control" id="notas" name="notas"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -553,6 +589,29 @@
         $('#clientesTable').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).on('click', '.btn-warning', function() {
+        // Obtener el ID del cliente desde el botón (puedes usar un atributo data- o algo similar)
+        var clienteId = $(this).data('id');
+
+        // Hacer una solicitud AJAX para obtener los datos del cliente
+        $.ajax({
+            url: '/clientes/' + clienteId + '/edit',
+            method: 'GET',
+            success: function(data) {
+                // Llenar el formulario con los datos del cliente
+                $('#cliente_id').val(data.id);
+                $('#nombre').val(data.nombre);
+                $('#telefono').val(data.telefono);
+                $('#notas').val(data.notas);
+
+                // Mostrar el modal
+                $('#editClienteModal').modal('show');
             }
         });
     });

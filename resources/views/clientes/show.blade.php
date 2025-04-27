@@ -264,6 +264,8 @@
                     <p><strong>Teléfono:</strong> {{ $cliente->telefono }}</p>
                     <p><strong>Notas:</strong> {{ $cliente->notas }}</p>
 
+                    <a href="javascript:history.back()" class="btn btn-secondary mt-3">Volver</a>
+
                     <hr>
 
                     <h4>Préstamos</h4>
