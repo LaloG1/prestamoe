@@ -22,12 +22,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
+
+    // Ruta básica para abrir vistas
+    Route::get('/clientes', function () {
+        return view('clientes.index');
+    })->name('clientes.index'); // Asignamos un nombre a la ruta
+
+    Route::get('/dashboard', function () {
+        return view('dashboard'); // Asegúrate de que esta vista exista
+    })->name('dashboard'); // 🔹 Nombre asignado a la ruta
+
+    Route::get('/clientes/create', function () {
+        return view('clientes.create');
+    })->name('clientes.create');
+
+    // Ruta básica
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);
 
     Route::post('/pagos', [PagoController::class, 'store'])->name('pagos.store');
     Route::delete('/pagos/{pago}', [PagoController::class, 'destroy'])->name('pagos.destroy');
-
 });
 
 require __DIR__ . '/auth.php';

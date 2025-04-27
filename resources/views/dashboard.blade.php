@@ -124,7 +124,7 @@
       <!--begin::Sidebar Brand-->
       <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="./index.html" class="brand-link">
+        <a href="{{ route('dashboard') }}" class="brand-link">
           <!--begin::Brand Image-->
           <img
             src="../../dist/assets/img/AdminLTELogo.png"
@@ -166,7 +166,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                <a href="{{ route('clientes.index') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Ver clientes</p>
                   </a>
