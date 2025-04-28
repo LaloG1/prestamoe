@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/pagos', [PagoController::class, 'store'])->name('pagos.store');
     Route::delete('/pagos/{pago}', [PagoController::class, 'destroy'])->name('pagos.destroy');
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+
     
 });
 

@@ -160,7 +160,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                <a href="{{ route('clientes.create') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Nuevo cliente</p>
                   </a>
@@ -184,7 +184,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./forms/general.html" class="nav-link">
+                <a href="{{ route('prestamos.create') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Nuevo prestamo</p>
                   </a>

@@ -131,105 +131,105 @@
         <!--end::Header-->
         <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-            <!--begin::Sidebar Brand-->
-            <div class="sidebar-brand">
-                <!--begin::Brand Link-->
-                <a href="{{ route('dashboard') }}" class="brand-link">
-                    <!--begin::Brand Image-->
-                    <img
-                        src="../../dist/assets/img/AdminLTELogo.png"
-                        alt="AdminLTE Logo"
-                        class="brand-image opacity-75 shadow" />
-                    <!--end::Brand Image-->
-                    <!--begin::Brand Text-->
-                    <span class="brand-text fw-light">Edoiaza</span>
-                    <!--end::Brand Text-->
-                </a>
-                <!--end::Brand Link-->
-            </div>
-            <!--end::Sidebar Brand-->
-            <!--begin::Sidebar Wrapper-->
-            <div class="sidebar-wrapper">
-                <nav class="mt-2">
-                    <!--begin::Sidebar Menu-->
-                    <ul
-                        class="nav sidebar-menu flex-column"
-                        data-lte-toggle="treeview"
-                        role="menu"
-                        data-accordion="false">
+      <!--begin::Sidebar Brand-->
+      <div class="sidebar-brand">
+        <!--begin::Brand Link-->
+        <a href="{{ route('dashboard') }}" class="brand-link">
+          <!--begin::Brand Image-->
+          <img
+            src="../../dist/assets/img/AdminLTELogo.png"
+            alt="AdminLTE Logo"
+            class="brand-image opacity-75 shadow" />
+          <!--end::Brand Image-->
+          <!--begin::Brand Text-->
+          <span class="brand-text fw-light">Edoiaza</span>
+          <!--end::Brand Text-->
+        </a>
+        <!--end::Brand Link-->
+      </div>
+      <!--end::Sidebar Brand-->
+      <!--begin::Sidebar Wrapper-->
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <!--begin::Sidebar Menu-->
+          <ul
+            class="nav sidebar-menu flex-column"
+            data-lte-toggle="treeview"
+            role="menu"
+            data-accordion="false">
 
-                        <li class="nav-header">TAREAS</li>
+            <li class="nav-header">TAREAS</li>
 
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon bi bi-speedometer"></i>
-                                <p>
-                                    Clientes
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('clientes.create') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Nuevo cliente</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('clientes.index') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Ver clientes</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon bi bi-speedometer"></i>
+                <p>
+                  Clientes
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{ route('clientes.create') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Nuevo cliente</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('clientes.index') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver clientes</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-pencil-square"></i>
-                                <p>
-                                    Prestamos
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./forms/general.html" class="nav-link">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Nuevo prestamo</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./forms/general.html" class="nav-link">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Ver prestamos</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-table"></i>
-                                <p>
-                                    Tables
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./tables/simple.html" class="nav-link">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!--end::Sidebar Menu-->
-                </nav>
-            </div>
-            <!--end::Sidebar Wrapper-->
-        </aside>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-pencil-square"></i>
+                <p>
+                  Prestamos
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{ route('prestamos.create') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Nuevo prestamo</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('prestamos.index') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver prestamos</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-table"></i>
+                <p>
+                  Tables
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./tables/simple.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Simple Tables</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--end::Sidebar Menu-->
+        </nav>
+      </div>
+      <!--end::Sidebar Wrapper-->
+    </aside>
         <!--end::Sidebar-->
         <!--begin::App Main-->
         <main class="app-main">
@@ -278,49 +278,58 @@
                                 <td>{{ $cliente->notas }}</td>
                                 <td>
                                     <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-sm btn-info">Ver</a>
-                                    <a href="#" class="btn btn-sm btn-warning">Editar</a> <!-- Botón de editar -->
+                                    <a href="#"
+                                        class="btn btn-sm btn-warning editar-btn"
+                                        data-id="{{ $cliente->id }}"
+                                        data-nombre="{{ $cliente->nombre }}"
+                                        data-telefono="{{ $cliente->telefono }}"
+                                        data-notas="{{ $cliente->notas }}">
+                                        Editar
+                                    </a>
+
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
 
                     </table>
-                </div>
-
-                <!-- Modal de Edición -->
-                <div class="modal fade" id="editClienteModal" tabindex="-1" aria-labelledby="editClienteModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editClienteModalLabel">Editar Cliente</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Formulario de edición del cliente -->
-                                <form id="editClienteForm">
-                                    <input type="hidden" id="cliente_id" name="cliente_id">
-
-                                    <div class="mb-3">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <!-- Modal de Edición -->
+                    <div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="editarClienteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form id="editarClienteForm" method="POST" action="">
+                                @csrf
+                                @method('PUT')
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editarClienteModalLabel">Editar Cliente</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="telefono" class="form-label">Teléfono</label>
-                                        <input type="text" class="form-control" id="telefono" name="telefono" required>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="telefono" class="form-label">Teléfono</label>
+                                            <input type="text" class="form-control" id="telefono" name="telefono" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="notas" class="form-label">Notas</label>
+                                            <textarea class="form-control" id="notas" name="notas"></textarea>
+                                        </div>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="notas" class="form-label">Notas</label>
-                                        <textarea class="form-control" id="notas" name="notas"></textarea>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+
                 </div>
+
+
 
 
                 <!--end::Container-->
@@ -578,6 +587,34 @@
         const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
         sparkline3.render();
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editarBtns = document.querySelectorAll('.editar-btn');
+            const editarClienteModal = new bootstrap.Modal(document.getElementById('editarClienteModal'));
+            const form = document.getElementById('editarClienteForm');
+
+            editarBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const nombre = this.getAttribute('data-nombre');
+                    const telefono = this.getAttribute('data-telefono');
+                    const notas = this.getAttribute('data-notas');
+
+                    // Rellenar el formulario
+                    form.action = `/clientes/${id}`; // Ajusta según tu ruta PUT
+                    form.querySelector('#nombre').value = nombre;
+                    form.querySelector('#telefono').value = telefono;
+                    form.querySelector('#notas').value = notas;
+
+                    // Mostrar el modal
+                    editarClienteModal.show();
+                });
+            });
+        });
+    </script>
+
+
     <!--end::Script-->
 </body>
 <!--end::Body-->
@@ -589,29 +626,6 @@
         $('#clientesTable').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
-            }
-        });
-    });
-</script>
-
-<script>
-    $(document).on('click', '.btn-warning', function() {
-        // Obtener el ID del cliente desde el botón (puedes usar un atributo data- o algo similar)
-        var clienteId = $(this).data('id');
-
-        // Hacer una solicitud AJAX para obtener los datos del cliente
-        $.ajax({
-            url: '/clientes/' + clienteId + '/edit',
-            method: 'GET',
-            success: function(data) {
-                // Llenar el formulario con los datos del cliente
-                $('#cliente_id').val(data.id);
-                $('#nombre').val(data.nombre);
-                $('#telefono').val(data.telefono);
-                $('#notas').val(data.notas);
-
-                // Mostrar el modal
-                $('#editClienteModal').modal('show');
             }
         });
     });
