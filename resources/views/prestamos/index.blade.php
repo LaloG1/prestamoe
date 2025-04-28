@@ -258,53 +258,89 @@
             <!--begin::App Content-->
             <div class="app-content">
                 <!--begin::Container-->
-
                 <div class="container">
+                    <!-- Contenedor principal responsivo -->
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
+                        <!-- Botones (se apilan en móvil) -->
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{{ route('prestamos.create') }}" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i> Nuevo Préstamo
+                            </a>
+                            <a href="javascript:history.back()" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Volver
+                            </a>
+                        </div>
 
-                    <a href="{{ route('prestamos.create') }}" class="btn btn-primary mb-3">Nuevo Préstamo</a>
-                    <a href="javascript:history.back()" class="btn btn-secondary mb-3">Volver</a>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Cliente</th>
-                                <th>Monto</th>
-                                <th>Interés (%)</th>
-                                <th>Interés generado ($)</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($prestamos as $prestamo)
-                            <tr data-prestamo-id="{{ $prestamo->id }}">
-                                <td>{{ $prestamo->cliente->nombre }}</td>
-                                <td>${{ number_format($prestamo->monto) }}</td>
-                                <td>{{ $prestamo->interes }}%</td>
-                                <td>${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</td>
-                                <td>
-                                    @if($prestamo->estado == 'pagado')
-                                    <span class="badge text-bg-success">Completado</span>
-                                    @elseif($prestamo->estado == 'pendiente')
-                                    <span class="badge text-bg-warning">Pendiente</span>
-                                    @else
-                                    {{ ucfirst($prestamo->estado) }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('prestamos.show', $prestamo) }}" class="btn btn-sm btn-info">Ver</a>
-                                    <button class="btn btn-sm btn-warning edit-prestamo">Editar</button>
+                        <!-- Radio buttons (se mueven abajo en móvil) -->
+                        <div class="btn-group flex-wrap" role="group" aria-label="Filtros de estado">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                            <label class="btn btn-outline-primary" for="btnradio1">
+                                <i class="bi bi-list-check me-1"></i> Todos
+                            </label>
 
-                                    <!-- Botón de eliminar con formulario -->
-                                    <form action="{{ route('prestamos.destroy', $prestamo->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este préstamo?')">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                            <label class="btn btn-outline-primary" for="btnradio2">
+                                <i class="bi bi-clock-history me-1"></i> Pendientes
+                            </label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                            <label class="btn btn-outline-primary" for="btnradio3">
+                                <i class="bi bi-check-circle me-1"></i> Pagados
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tabla responsiva -->
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th class="text-end">Monto</th>
+                                    <th class="text-end">Interés (%)</th>
+                                    <th class="text-end">Interés ($)</th>
+                                    <th>Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($prestamos as $prestamo)
+                                <tr data-prestamo-id="{{ $prestamo->id }}">
+                                    <td>{{ $prestamo->cliente->nombre }}</td>
+                                    <td class="text-end">${{ number_format($prestamo->monto) }}</td>
+                                    <td class="text-end">{{ $prestamo->interes }}%</td>
+                                    <td class="text-end">${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</td>
+                                    <td>
+                                        @if($prestamo->estado == 'pagado')
+                                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Pagado</span>
+                                        @elseif($prestamo->estado == 'pendiente')
+                                        <span class="badge bg-warning text-dark"><i class="bi bi-clock-history me-1"></i> Pendiente</span>
+                                        @else
+                                        <span class="badge bg-secondary">{{ ucfirst($prestamo->estado) }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <a href="{{ route('prestamos.show', $prestamo) }}" class="btn btn-sm btn-info" title="Ver">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-warning edit-prestamo" title="Editar">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <form action="{{ route('prestamos.destroy', $prestamo->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este préstamo?')">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     <!-- Modal de Edición -->
                     <div class="modal fade" id="editarPrestamoModal" tabindex="-1" aria-labelledby="editarPrestamoModalLabel" aria-hidden="true">
@@ -350,9 +386,6 @@
 
 
                 </div>
-
-
-
 
                 <!--end::Container-->
             </div>
@@ -639,30 +672,30 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-prestamo');
+    document.addEventListener('DOMContentLoaded', function() {
+        const editButtons = document.querySelectorAll('.edit-prestamo');
 
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tr = this.closest('tr');
-            const prestamoId = tr.getAttribute('data-prestamo-id');
-            const monto = tr.children[1].textContent.replace('$', '').replace(',', '').trim();
-            const interes = tr.children[2].textContent.replace('%', '').trim();
-            const estadoTexto = tr.children[4].textContent.trim().toLowerCase();
+        editButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tr = this.closest('tr');
+                const prestamoId = tr.getAttribute('data-prestamo-id');
+                const monto = tr.children[1].textContent.replace('$', '').replace(',', '').trim();
+                const interes = tr.children[2].textContent.replace('%', '').trim();
+                const estadoTexto = tr.children[4].textContent.trim().toLowerCase();
 
-            // Rellenar el modal
-            document.getElementById('prestamo_id').value = prestamoId;
-            document.getElementById('monto').value = monto;
-            document.getElementById('interes').value = interes;
-            document.getElementById('estado').value = estadoTexto;
+                // Rellenar el modal
+                document.getElementById('prestamo_id').value = prestamoId;
+                document.getElementById('monto').value = monto;
+                document.getElementById('interes').value = interes;
+                document.getElementById('estado').value = estadoTexto;
 
-            // Cambiar la acción del formulario
-            document.getElementById('formEditarPrestamo').action = '/prestamos/' + prestamoId;
+                // Cambiar la acción del formulario
+                document.getElementById('formEditarPrestamo').action = '/prestamos/' + prestamoId;
 
-            // Mostrar el modal
-            var modal = new bootstrap.Modal(document.getElementById('editarPrestamoModal'));
-            modal.show();
+                // Mostrar el modal
+                var modal = new bootstrap.Modal(document.getElementById('editarPrestamoModal'));
+                modal.show();
+            });
         });
     });
-});
 </script>
