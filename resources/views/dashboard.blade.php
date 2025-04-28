@@ -160,13 +160,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="{{ route('clientes.create') }}" class="nav-link active">
+                  <a href="{{ route('clientes.create') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Nuevo cliente</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route('clientes.index') }}" class="nav-link active">
+                  <a href="{{ route('clientes.index') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Ver clientes</p>
                   </a>
@@ -184,13 +184,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="{{ route('prestamos.create') }}" class="nav-link active">
+                  <a href="{{ route('prestamos.create') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Nuevo prestamo</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route('prestamos.index') }}" class="nav-link active">
+                  <a href="{{ route('prestamos.index') }}" class="nav-link active">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Ver prestamos</p>
                   </a>
@@ -255,8 +255,8 @@
               <!--begin::Small Box Widget 1-->
               <a href="{{ route('clientes_menu') }}" class="text-decoration-none">
                 <div class="small-box text-bg-primary">
-                  <div class="inner">
-                    <h3>150</h3>
+                  <div class="inner text-center">
+                    <h3> {{ App\Models\Cliente::count() }}</h3>
                     <h1>Clientes</h1>
                   </div>
                   <svg
@@ -280,8 +280,8 @@
               <!--begin::Small Box Widget 2-->
               <a href="{{ route('prestamos_menu') }}" class="text-decoration-none d-block"> <!-- Añadido enlace aquí -->
                 <div class="small-box text-bg-success">
-                  <div class="inner">
-                    <h3>53<sup class="fs-5">%</sup></h3>
+                  <div class="inner text-center">
+                  <h3> {{ App\Models\Prestamo::count() }}</h3>
                     <h1>Préstamos</h1>
                   </div>
                   <svg
@@ -303,11 +303,11 @@
             <!--end::Col-->
             <div class="col-lg-3 col-6">
               <!--begin::Small Box Widget 3-->
-              <a href="#" class="text-decoration-none d-block"> <!-- Enlace que envuelve todo -->
+              <a href="{{ route('pago') }}" class="text-decoration-none d-block"> <!-- Enlace que envuelve todo -->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
-                    <h1>Pagos</h1>
+                    <h3>-</h3>
+                    <h1>Hacer Pago</h1>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -331,7 +331,7 @@
               <a href="#" class="text-decoration-none d-block">
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
+                    <h3>-</h3>
                     <h1>Utilidad</h1>
                   </div>
                   <svg
@@ -368,7 +368,7 @@
     <!--begin::Footer-->
     <footer class="app-footer">
       <!--begin::To the end-->
-      
+
       <!--end::To the end-->
       <!--begin::Copyright-->
       <strong>

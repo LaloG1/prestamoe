@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
         return view('prestamos_menu'); 
     })->name('prestamos_menu');
 
+    Route::get('/pago', function () {
+        return view('pago'); 
+    })->name('pago');
+
     // Ruta básica
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);
@@ -56,6 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/pagos', [PagoController::class, 'store'])->name('pagos.store');
     Route::delete('/pagos/{pago}', [PagoController::class, 'destroy'])->name('pagos.destroy');
     Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/prestamos/{prestamo}', [PrestamoController::class, 'destroy'])->name('prestamos.destroy');
+    Route::put('/prestamos/{prestamo}', [PrestamoController::class, 'update'])->name('prestamos.update');
 
     
 });

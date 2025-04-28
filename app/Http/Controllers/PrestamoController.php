@@ -57,17 +57,20 @@ class PrestamoController extends Controller
     public function update(Request $request, Prestamo $prestamo)
     {
         $request->validate([
-            'cliente_id' => 'required|exists:clientes,id',
-            'monto' => 'required|numeric|min:0',
-            'interes' => 'required|numeric|min:0',
-            'estado' => 'required|string|in:pendiente,pagado,atrasado',
-            'notas' => 'nullable|string',
+            'monto' => 'required|numeric',
+            'interes' => 'required|numeric',
+            'estado' => 'required|string'
         ]);
 
-        $prestamo->update($request->all());
+        $prestamo->update([
+            'monto' => $request->monto,
+            'interes' => $request->interes,
+            'estado' => $request->estado
+        ]);
 
-        return redirect()->route('prestamos.index')->with('success', 'Préstamo actualizado correctamente');
+        return redirect()->route('prestamos.index')->with('success', 'Préstamo actualizado correctamente.');
     }
+
 
     public function destroy(Prestamo $prestamo)
     {

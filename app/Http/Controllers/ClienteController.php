@@ -10,6 +10,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
+        $totalClientes = Cliente::count(); // Esto obtiene el número total de registros
         return view('clientes.index', compact('clientes'));
     }
 

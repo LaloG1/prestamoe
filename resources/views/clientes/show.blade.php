@@ -131,105 +131,105 @@
         <!--end::Header-->
         <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-      <!--begin::Sidebar Brand-->
-      <div class="sidebar-brand">
-        <!--begin::Brand Link-->
-        <a href="{{ route('dashboard') }}" class="brand-link">
-          <!--begin::Brand Image-->
-          <img
-            src="../../dist/assets/img/AdminLTELogo.png"
-            alt="AdminLTE Logo"
-            class="brand-image opacity-75 shadow" />
-          <!--end::Brand Image-->
-          <!--begin::Brand Text-->
-          <span class="brand-text fw-light">Edoiaza</span>
-          <!--end::Brand Text-->
-        </a>
-        <!--end::Brand Link-->
-      </div>
-      <!--end::Sidebar Brand-->
-      <!--begin::Sidebar Wrapper-->
-      <div class="sidebar-wrapper">
-        <nav class="mt-2">
-          <!--begin::Sidebar Menu-->
-          <ul
-            class="nav sidebar-menu flex-column"
-            data-lte-toggle="treeview"
-            role="menu"
-            data-accordion="false">
+            <!--begin::Sidebar Brand-->
+            <div class="sidebar-brand">
+                <!--begin::Brand Link-->
+                <a href="{{ route('dashboard') }}" class="brand-link">
+                    <!--begin::Brand Image-->
+                    <img
+                        src="../../dist/assets/img/AdminLTELogo.png"
+                        alt="AdminLTE Logo"
+                        class="brand-image opacity-75 shadow" />
+                    <!--end::Brand Image-->
+                    <!--begin::Brand Text-->
+                    <span class="brand-text fw-light">Edoiaza</span>
+                    <!--end::Brand Text-->
+                </a>
+                <!--end::Brand Link-->
+            </div>
+            <!--end::Sidebar Brand-->
+            <!--begin::Sidebar Wrapper-->
+            <div class="sidebar-wrapper">
+                <nav class="mt-2">
+                    <!--begin::Sidebar Menu-->
+                    <ul
+                        class="nav sidebar-menu flex-column"
+                        data-lte-toggle="treeview"
+                        role="menu"
+                        data-accordion="false">
 
-            <li class="nav-header">TAREAS</li>
+                        <li class="nav-header">TAREAS</li>
 
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon bi bi-speedometer"></i>
-                <p>
-                  Clientes
-                  <i class="nav-arrow bi bi-chevron-right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="{{ route('clientes.create') }}" class="nav-link active">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Nuevo cliente</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                <a href="{{ route('clientes.index') }}" class="nav-link active">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Ver clientes</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon bi bi-speedometer"></i>
+                                <p>
+                                    Clientes
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('clientes.create') }}" class="nav-link active">
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p>Nuevo cliente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('clientes.index') }}" class="nav-link active">
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p>Ver clientes</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon bi bi-pencil-square"></i>
-                <p>
-                  Prestamos
-                  <i class="nav-arrow bi bi-chevron-right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="{{ route('prestamos.create') }}" class="nav-link active">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Nuevo prestamo</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                <a href="{{ route('prestamos.index') }}" class="nav-link active">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Ver prestamos</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon bi bi-table"></i>
-                <p>
-                  Tables
-                  <i class="nav-arrow bi bi-chevron-right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./tables/simple.html" class="nav-link">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Simple Tables</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <!--end::Sidebar Menu-->
-        </nav>
-      </div>
-      <!--end::Sidebar Wrapper-->
-    </aside>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-pencil-square"></i>
+                                <p>
+                                    Prestamos
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('prestamos.create') }}" class="nav-link active">
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p>Nuevo prestamo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('prestamos.index') }}" class="nav-link active">
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p>Ver prestamos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-table"></i>
+                                <p>
+                                    Tables
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./tables/simple.html" class="nav-link">
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--end::Sidebar Menu-->
+                </nav>
+            </div>
+            <!--end::Sidebar Wrapper-->
+        </aside>
         <!--end::Sidebar-->
         <!--begin::App Main-->
         <main class="app-main">
@@ -240,7 +240,7 @@
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Clientes</h3>
+                            <h2>Detalles del Cliente</h2>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
@@ -259,7 +259,7 @@
                 <!--begin::Container-->
 
                 <div class="container">
-                    <h2>Detalles del Cliente</h2>
+
                     <p><strong>Nombre:</strong> {{ $cliente->nombre }}</p>
                     <p><strong>Teléfono:</strong> {{ $cliente->telefono }}</p>
                     <p><strong>Notas:</strong> {{ $cliente->notas }}</p>
@@ -283,7 +283,15 @@
                             @foreach ($cliente->prestamos as $prestamo)
                             <tr>
                                 <td>${{ number_format($prestamo->monto, 2) }}</td>
-                                <td>{{ ucfirst($prestamo->estado) }}</td>
+                                <td>
+                                    @if($prestamo->estado == 'pagado')
+                                    <span class="badge text-bg-success">Completado</span>
+                                    @elseif($prestamo->estado == 'pendiente')
+                                    <span class="badge text-bg-warning">Pendiente</span>
+                                    @else
+                                    {{ ucfirst($prestamo->estado) }}
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('prestamos.show', $prestamo) }}" class="btn btn-sm btn-info">Ver Detalle</a>
                                 </td>
@@ -303,17 +311,17 @@
         <!--end::App Main-->
         <!--begin::Footer-->
         <footer class="app-footer">
-      <!--begin::To the end-->
-      
-      <!--end::To the end-->
-      <!--begin::Copyright-->
-      <strong>
-        Copyright &copy; 2025&nbsp;
-        <a href="https://adminlte.io" class="text-decoration-none">Edoiaza</a>.
-      </strong>
-      All rights reserved.
-      <!--end::Copyright-->
-    </footer>
+            <!--begin::To the end-->
+
+            <!--end::To the end-->
+            <!--begin::Copyright-->
+            <strong>
+                Copyright &copy; 2025&nbsp;
+                <a href="https://adminlte.io" class="text-decoration-none">Edoiaza</a>.
+            </strong>
+            All rights reserved.
+            <!--end::Copyright-->
+        </footer>
         <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->

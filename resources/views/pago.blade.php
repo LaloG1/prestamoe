@@ -19,7 +19,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
     <meta name="author" content="ColorlibHQ" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta
         name="description"
         content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS." />
@@ -241,12 +240,12 @@
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Préstamos</h3>
+                        <h2>Registrar Pago</h2>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+                                <li class="breadcrumb-item active" aria-current="page">Pagos</li>
                             </ol>
                         </div>
                     </div>
@@ -259,99 +258,26 @@
             <div class="app-content">
                 <!--begin::Container-->
 
-                <div class="container">
+                <form method="POST" action="{{ route('pagos.store') }}">
+                    @csrf
+                
+                    <div class="form-container">
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto del Pago</label>
+                            <input type="number" name="monto" step="0.01" class="form-control" required>
+                        </div>
 
-                    <a href="{{ route('prestamos.create') }}" class="btn btn-primary mb-3">Nuevo Préstamo</a>
-                    <a href="javascript:history.back()" class="btn btn-secondary mb-3">Volver</a>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Cliente</th>
-                                <th>Monto</th>
-                                <th>Interés (%)</th>
-                                <th>Interés generado ($)</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($prestamos as $prestamo)
-                            <tr data-prestamo-id="{{ $prestamo->id }}">
-                                <td>{{ $prestamo->cliente->nombre }}</td>
-                                <td>${{ number_format($prestamo->monto) }}</td>
-                                <td>{{ $prestamo->interes }}%</td>
-                                <td>${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</td>
-                                <td>
-                                    @if($prestamo->estado == 'pagado')
-                                    <span class="badge text-bg-success">Completado</span>
-                                    @elseif($prestamo->estado == 'pendiente')
-                                    <span class="badge text-bg-warning">Pendiente</span>
-                                    @else
-                                    {{ ucfirst($prestamo->estado) }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('prestamos.show', $prestamo) }}" class="btn btn-sm btn-info">Ver</a>
-                                    <button class="btn btn-sm btn-warning edit-prestamo">Editar</button>
+                        <div class="mb-3">
+                            <label for="fecha_pago" class="form-label">Fecha de Pago</label>
+                            <input type="date" name="fecha_pago" class="form-control" value="{{ date('Y-m-d') }}" required>
+                        </div>
 
-                                    <!-- Botón de eliminar con formulario -->
-                                    <form action="{{ route('prestamos.destroy', $prestamo->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este préstamo?')">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    <!-- Modal de Edición -->
-                    <div class="modal fade" id="editarPrestamoModal" tabindex="-1" aria-labelledby="editarPrestamoModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form id="formEditarPrestamo" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editarPrestamoModalLabel">Editar Préstamo</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="prestamo_id" id="prestamo_id">
-
-                                        <div class="mb-3">
-                                            <label for="monto" class="form-label">Monto</label>
-                                            <input type="number" class="form-control" id="monto" name="monto" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="interes" class="form-label">Interés (%)</label>
-                                            <input type="number" class="form-control" id="interes" name="interes" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="estado" class="form-label">Estado</label>
-                                            <select class="form-select" id="estado" name="estado" required>
-                                                <option value="pendiente">Pendiente</option>
-                                                <option value="pagado">Pagado</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="form-actions">
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Registrar Pago</button>
                         </div>
                     </div>
-
-
-                </div>
-
-
+                </form>
 
 
                 <!--end::Container-->
@@ -623,46 +549,4 @@
             }
         });
     });
-</script>
-
-
-<script>
-    // En tu archivo JS
-    document.querySelectorAll('.delete-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (confirm('¿Estás seguro de eliminar este préstamo?')) {
-                this.submit();
-            }
-        });
-    });
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-prestamo');
-
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tr = this.closest('tr');
-            const prestamoId = tr.getAttribute('data-prestamo-id');
-            const monto = tr.children[1].textContent.replace('$', '').replace(',', '').trim();
-            const interes = tr.children[2].textContent.replace('%', '').trim();
-            const estadoTexto = tr.children[4].textContent.trim().toLowerCase();
-
-            // Rellenar el modal
-            document.getElementById('prestamo_id').value = prestamoId;
-            document.getElementById('monto').value = monto;
-            document.getElementById('interes').value = interes;
-            document.getElementById('estado').value = estadoTexto;
-
-            // Cambiar la acción del formulario
-            document.getElementById('formEditarPrestamo').action = '/prestamos/' + prestamoId;
-
-            // Mostrar el modal
-            var modal = new bootstrap.Modal(document.getElementById('editarPrestamoModal'));
-            modal.show();
-        });
-    });
-});
 </script>

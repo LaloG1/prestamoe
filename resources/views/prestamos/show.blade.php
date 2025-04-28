@@ -314,7 +314,16 @@
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="monto" class="form-label">Monto del Pago</label>
-                                            <input type="number" name="monto" step="0.01" class="form-control" required>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number"
+                                                    name="monto"
+                                                    step="0.01"
+                                                    class="form-control"
+                                                    required
+                                                    placeholder="${{ number_format($interesTotal, 0) }}" 
+                                                value="{{ old('monto', number_format($interesTotal, 2, '.', '')) }}"> <!-- 2 decimales en value -->
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="fecha_pago" class="form-label">Fecha de Pago</label>
