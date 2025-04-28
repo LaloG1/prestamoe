@@ -273,7 +273,8 @@
                             <label>Notas</label>
                             <textarea name="notas" class="form-control"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="submit" class="btn btn-success mb-3">Guardar</button>
+                        <a href="javascript:history.back()" class="btn btn-secondary mb-3">Volver</a>
                     </form>
                 </div>
 
@@ -285,17 +286,17 @@
         <!--end::App Main-->
         <!--begin::Footer-->
         <footer class="app-footer">
-            <!--begin::To the end-->
-
-            <!--end::To the end-->
-            <!--begin::Copyright-->
-            <strong>
-                Copyright &copy; 2014-2024&nbsp;
-                <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-            </strong>
-            All rights reserved.
-            <!--end::Copyright-->
-        </footer>
+      <!--begin::To the end-->
+      
+      <!--end::To the end-->
+      <!--begin::Copyright-->
+      <strong>
+        Copyright &copy; 2025&nbsp;
+        <a href="https://adminlte.io" class="text-decoration-none">Edoiaza</a>.
+      </strong>
+      All rights reserved.
+      <!--end::Copyright-->
+    </footer>
         <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->

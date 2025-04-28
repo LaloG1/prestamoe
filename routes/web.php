@@ -40,6 +40,15 @@ Route::middleware('auth')->group(function () {
         return view('prestamos.index');
     })->name('prestamos.index');
 
+    //Ruta para abrir solo vistas
+    Route::get('/clientes_menu', function () {
+        return view('clientes_menu'); // Asegúrate de que esta vista exista
+    })->name('clientes_menu'); // 🔹 Nombre asignado a la ruta
+
+    Route::get('/prestamos_menu', function () {
+        return view('prestamos_menu'); 
+    })->name('prestamos_menu');
+
     // Ruta básica
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);
