@@ -282,17 +282,15 @@
                         </div>
                         <div class="mb-3">
                             <label>Estado</label>
-                            <select name="estado" class="form-control">
-                                <option value="pendiente">Pendiente</option>
-                                <option value="pagado">Pagado</option>
-                                <option value="atrasado">Atrasado</option>
-                            </select>
+                            <input type="text" class="form-control" value="Pendiente" readonly>
+                            <input type="hidden" name="estado" value="pendiente">
                         </div>
                         <div class="mb-3">
                             <label>Notas</label>
                             <textarea name="notas" class="form-control"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="{{ route('prestamos.index') }}" class="btn btn-secondary">Cancelar</a>
                     </form>
                 </div>
                 <!--end::Container-->

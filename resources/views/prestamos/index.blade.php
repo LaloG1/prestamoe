@@ -273,17 +273,17 @@
 
                         <!-- Radio buttons (se mueven abajo en móvil) -->
                         <div class="btn-group flex-wrap" role="group" aria-label="Filtros de estado">
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked value="todos" />
                             <label class="btn btn-outline-primary" for="btnradio1">
                                 <i class="bi bi-list-check me-1"></i> Todos
                             </label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="pendiente" />
                             <label class="btn btn-outline-primary" for="btnradio2">
                                 <i class="bi bi-clock-history me-1"></i> Pendientes
                             </label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="pagado" />
                             <label class="btn btn-outline-primary" for="btnradio3">
                                 <i class="bi bi-check-circle me-1"></i> Pagados
                             </label>
@@ -642,6 +642,35 @@
         const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
         sparkline3.render();
     </script>
+
+    <script>
+        $(document).ready(function() {
+            // Función para filtrar la tabla
+            function filtrarPrestamos(estado) {
+                $('tbody tr').each(function() {
+                    const fila = $(this);
+                    const estadoFila = fila.find('td:eq(4)').text().toLowerCase().trim();
+
+                    if (estado === 'todos' ||
+                        (estado === 'pendiente' && estadoFila.includes('pendiente')) ||
+                        (estado === 'pagado' && estadoFila.includes('pagado'))) {
+                        fila.show();
+                    } else {
+                        fila.hide();
+                    }
+                });
+            }
+
+            // Evento para los radio buttons
+            $('input[name="btnradio"]').change(function() {
+                filtrarPrestamos($(this).val());
+            });
+
+            // Inicializar con el filtro "todos"
+            filtrarPrestamos('todos');
+        });
+    </script>
+
     <!--end::Script-->
 </body>
 <!--end::Body-->
