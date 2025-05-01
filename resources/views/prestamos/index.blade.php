@@ -307,9 +307,9 @@
                                 @foreach ($prestamos as $prestamo)
                                 <tr data-prestamo-id="{{ $prestamo->id }}">
                                     <td>{{ $prestamo->cliente->nombre }}</td>
-                                    <td class="text-end">${{ number_format($prestamo->monto) }}</td>
+                                    <td class="text-end">${{ number_format($prestamo->monto_original) }}</td>
                                     <td class="text-end">{{ $prestamo->interes }}%</td>
-                                    <td class="text-end">${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</td>
+                                    <td class="text-end">${{ number_format($prestamo->monto_original * ($prestamo->interes / 100)) }}</td>
                                     <td>
                                         @if($prestamo->estado == 'pagado')
                                         <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Pagado</span>

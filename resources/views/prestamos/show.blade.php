@@ -277,6 +277,7 @@
                             <p><strong>Cliente:</strong> {{ $prestamo->cliente->nombre }}</p>
                             <p><strong>Monto Original:</strong> ${{ number_format($prestamo->monto_original) }}</p>
                             <p><strong>Monto Actualizado:</strong> ${{ number_format($prestamo->monto) }}</p>
+                            <p><strong>Interés:</strong> {{ $prestamo->interes }}%</p>
                             <p><strong>Interés semanal a pagar:</strong> ${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</p>
                             <p><strong>Estado:</strong> {{ ucfirst($prestamo->estado) }}</p>
                             <p><strong>Notas:</strong> {{ $prestamo->notas }}</p>
@@ -315,6 +316,11 @@
                                     </div>
 
                                     <div class="modal-body">
+                                        @php
+                                        $montoMaximo = $prestamo->monto;
+                                        $interesSugerido = number_format($interesTotal, 2, '.', '');
+                                        @endphp
+
                                         <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
                                             <label class="btn btn-outline-primary" for="btnradio1">Interés</label>
@@ -335,8 +341,9 @@
                                                     step="0.01"
                                                     class="form-control"
                                                     required
+                                                    max="{{ $montoMaximo }}"
                                                     placeholder="${{ number_format($interesTotal, 0) }}"
-                                                    value="{{ old('interes', number_format($interesTotal, 2, '.', '')) }}">
+                                                    value="">
                                             </div>
 
                                             <!-- Campo de Abono (oculto por defecto) -->
@@ -347,7 +354,8 @@
                                                     step="0.01"
                                                     class="form-control"
                                                     required
-                                                    placeholder="Cantidad a abonar al prestamo"
+                                                    max="{{ $montoMaximo }}"
+                                                    placeholder="${{ number_format($prestamo->monto) }}"
                                                     value="">
                                             </div>
 
@@ -359,7 +367,8 @@
                                                     step="0.01"
                                                     class="form-control"
                                                     required
-                                                    placeholder="Liquidar el prestamo"
+                                                    max="{{ $montoMaximo }}"
+                                                    placeholder="${{ number_format($prestamo->monto) }}"
                                                     value="">
                                             </div>
                                         </div>
@@ -408,6 +417,8 @@
                                     document.querySelector('input[name="btnradio"]:checked').dispatchEvent(new Event('change'));
                                 });
                             </script>
+
+
                         </div>
                     </div>
 
@@ -430,7 +441,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($prestamo->pagos as $pago)
+                                    @foreach ($prestamo->pagos->sortByDesc('fecha_pago') as $pago)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>${{ number_format($pago->monto) }}</td>
@@ -458,6 +469,7 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
+
                             </table>
                             @endif
                         </div>
