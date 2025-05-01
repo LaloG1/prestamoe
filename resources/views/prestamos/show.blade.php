@@ -282,6 +282,10 @@
                             <p><strong>Estado:</strong> {{ ucfirst($prestamo->estado) }}</p>
                             <p><strong>Notas:</strong> {{ $prestamo->notas }}</p>
 
+                            <a href="{{ route('prestamos.vistaPreviaPDF', $prestamo->id) }}" class="btn btn-primary" target="_blank">
+                                Ver contrato en PDF
+                            </a>
+
                             <hr>
 
                             @php

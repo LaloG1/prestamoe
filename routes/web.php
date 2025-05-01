@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/prestamos/{prestamo}', [PrestamoController::class, 'destroy'])->name('prestamos.destroy');
     Route::put('/prestamos/{prestamo}', [PrestamoController::class, 'update'])->name('prestamos.update');
 
+    Route::get('/prestamos/{prestamo}/contrato', [PrestamoController::class, 'vistaPreviaPDF'])->name('prestamos.vistaPreviaPDF');
+
     
 });
 

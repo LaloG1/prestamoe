@@ -58,17 +58,17 @@
             El préstamo generará un interés semanal del
             <strong>{{ $prestamo->interes }}%</strong>,
             que se pagará semana tras semana
-            (<strong>${{ number_format($prestamo->monto * ($prestamo->interes / 100), 2) }}</strong>).
+            (<strong>${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</strong>) pesos.
         </p>
 
         <p><strong>3. PLAZO Y PAGOS</strong><br>
-            El CLIENTE se compromete a realizar <strong>pagos semanales</strong> de acuerdo con el plan acordado, comenzando <strong>los días Jueves, Viernes, Sábado o Domingo, de la semana siguiente desde que se otorgó el préstamo</strong>, hasta cubrir el monto total del préstamo.</p>
+            El CLIENTE se compromete a realizar <strong>pagos semanales</strong> de acuerdo con el plan acordado, comenzando <strong>los días Jueves y viernes de la semana siguiente desde que se otorgó el préstamo</strong>, hasta cubrir el monto total del préstamo.</p>
 
         <p><strong>4. COMPROMISO DEL CLIENTE</strong><br>
             El CLIENTE se compromete a pagar en <strong>tiempo y forma</strong> cada cuota semanal correspondiente, evitando retrasos o incumplimientos que puedan generar penalizaciones o acciones legales por parte del PRESTADOR.</p>
 
         <p><strong>5. INCUMPLIMIENTO</strong><br>
-            En caso de incumplimiento en los pagos, el PRESTADOR podrá exigir el pago total inmediato del saldo restante.</p>
+        En caso de incumplimiento de los pagos, el prestados podrá exigir el pago total en el día acordado..</p>
 
         <hr class="my-4">
 

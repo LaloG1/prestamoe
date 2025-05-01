@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf as PDF; // Asegúrate de importar esta clase correctamente
+use Illuminate\Support\Facades\Auth;
 use App\Models\Prestamo;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -31,9 +33,22 @@ class PrestamoController extends Controller
             'notas' => 'nullable|string',
         ]);
 
-        Prestamo::create($request->all());
+        // 1. Crear el préstamo
+        $prestamo = Prestamo::create($request->all());
 
-        return redirect()->route('prestamos.index')->with('success', 'Préstamo creado correctamente');
+        // 2. Obtener datos para el PDF
+        $cliente = $prestamo->cliente;
+        $user = Auth::user(); // Prestador autenticado
+        $fecha = now();
+
+        // 3. Generar PDF (sin descargar)
+        $pdf = PDF::loadView('prestamos.contrato', compact('prestamo', 'cliente', 'user', 'fecha'));
+
+        // Opcional: guardar PDF en disco
+        // Storage::put("contratos/contrato_{$prestamo->id}.pdf", $pdf->output());
+
+        // 4. Redirigir con mensaje de éxito
+        return redirect()->route('prestamos.index')->with('success', 'Préstamo creado correctamente y contrato generado.');
     }
 
     public function show(Prestamo $prestamo)
@@ -77,4 +92,15 @@ class PrestamoController extends Controller
         $prestamo->delete();
         return redirect()->route('prestamos.index')->with('success', 'Préstamo eliminado correctamente');
     }
+
+    public function vistaPreviaPDF(Prestamo $prestamo)
+{
+    $cliente = $prestamo->cliente;
+    $user = Auth::user(); // El prestador
+    $fecha = now();
+
+    $pdf = Pdf::loadView('contratos.pdf', compact('prestamo', 'cliente', 'user', 'fecha'));
+
+    return $pdf->stream("Contrato_prestamo_{$prestamo->id}.pdf"); // Esto lo muestra en el navegador
+}
 }
