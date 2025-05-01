@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class PagoController extends Controller
 {
-    public function store(Request $request)
+    // En tu método store del PagoController
+public function store(Request $request)
 {
     $request->validate([
         'prestamo_id' => 'required|exists:prestamos,id',
@@ -16,7 +17,7 @@ class PagoController extends Controller
         'fecha_pago' => 'required|date',
     ]);
 
-    // Determinar el tipo de pago y el monto
+    $prestamo = Prestamo::find($request->prestamo_id);
     $tipoPago = null;
     $monto = null;
 
@@ -26,13 +27,23 @@ class PagoController extends Controller
     } elseif ($request->has('abono')) {
         $tipoPago = 'abono';
         $monto = $request->abono;
+        
+        // Validar que el abono no sea mayor al monto pendiente
+        if ($monto > $prestamo->monto) {
+            return back()->with('error', 'El abono no puede ser mayor al monto pendiente');
+        }
+        
+        // Actualizar el monto del préstamo
+        $prestamo->monto -= $monto;
+        $prestamo->save();
     } elseif ($request->has('liquidar')) {
         $tipoPago = 'liquidar';
         $monto = $request->liquidar;
-    }
-
-    if (!$tipoPago || !$monto) {
-        return back()->with('error', 'Debe seleccionar un tipo de pago y especificar el monto');
+        
+        // Marcar el préstamo como pagado
+        $prestamo->estado = 'pagado';
+        $prestamo->monto = 0;
+        $prestamo->save();
     }
 
     // Crear el pago
@@ -43,13 +54,6 @@ class PagoController extends Controller
         'tipo_pago' => $tipoPago,
         'fecha_pago' => $request->fecha_pago,
     ]);
-
-    // Verificar si el préstamo debe marcarse como pagado (si se liquidó)
-    if ($tipoPago === 'liquidar') {
-        $prestamo = Prestamo::find($request->prestamo_id);
-        $prestamo->estado = 'pagado';
-        $prestamo->save();
-    }
 
     return redirect()->back()->with('success', 'Pago registrado exitosamente');
 }

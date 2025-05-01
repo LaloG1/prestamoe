@@ -9,7 +9,7 @@ class Prestamo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['cliente_id', 'monto', 'interes', 'estado', 'notas'];
+    protected $fillable = ['cliente_id', 'monto', 'interes', 'estado', 'notas', 'monto_original'];
 
     public function cliente()
     {
@@ -19,6 +19,13 @@ class Prestamo extends Model
     public function pagos()
 {
     return $this->hasMany(Pago::class);
+}
+
+protected static function booted()
+{
+    static::creating(function ($prestamo) {
+        $prestamo->monto_original = $prestamo->monto;
+    });
 }
 
 }

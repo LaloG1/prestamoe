@@ -275,8 +275,9 @@
                             @endif
 
                             <p><strong>Cliente:</strong> {{ $prestamo->cliente->nombre }}</p>
-                            <p><strong>Monto:</strong> ${{ number_format($prestamo->monto) }}</p>
-                            <p><strong>Interés:</strong> {{ $prestamo->interes }}%</p>
+                            <p><strong>Monto Original:</strong> ${{ number_format($prestamo->monto_original) }}</p>
+                            <p><strong>Monto Actualizado:</strong> ${{ number_format($prestamo->monto) }}</p>
+                            <p><strong>Interés semanal a pagar:</strong> ${{ number_format($prestamo->monto * ($prestamo->interes / 100)) }}</p>
                             <p><strong>Estado:</strong> {{ ucfirst($prestamo->estado) }}</p>
                             <p><strong>Notas:</strong> {{ $prestamo->notas }}</p>
 
@@ -419,37 +420,45 @@
                             <p>No hay pagos registrados aún.</p>
                             @else
                             <table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Monto</th>
-            <th>Tipo de Pago</th>
-            <th>Fecha de Pago</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($prestamo->pagos as $pago)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>${{ number_format($pago->monto) }}</td>
-            <td>
-                @if($pago->tipo_pago === 'interes')
-                    Interés
-                @elseif($pago->tipo_pago === 'abono')
-                    Abono
-                @else
-                    Liquidación
-                @endif
-            </td>
-            <td>{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}</td>
-            <td>
-                <!-- ... acciones ... -->
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Monto</th>
+                                        <th>Tipo de Pago</th>
+                                        <th>Fecha de Pago</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($prestamo->pagos as $pago)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>${{ number_format($pago->monto) }}</td>
+                                        <td>
+                                            @if($pago->tipo_pago === 'interes')
+                                            Interés
+                                            @elseif($pago->tipo_pago === 'abono')
+                                            Abono
+                                            @else
+                                            Liquidación
+                                            @endif
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}</td>
+                                        <td>
+                                            <form action="{{ route('pagos.destroy', $pago->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    @if($prestamo->estado === 'pagado') disabled @endif
+                                                    onclick="return confirm('¿Estás seguro de eliminar este pago?')">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                             @endif
                         </div>
                     </div>
