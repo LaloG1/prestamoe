@@ -302,6 +302,7 @@
                     <!-- Modal de Pago -->
                     <div class="modal fade" id="pagoModal" tabindex="-1" aria-labelledby="pagoModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
+
                             <form method="POST" action="{{ route('pagos.store') }}">
                                 @csrf
                                 <input type="hidden" name="prestamo_id" value="{{ $prestamo->id }}">
@@ -311,31 +312,101 @@
                                         <h5 class="modal-title" id="pagoModalLabel">Registrar Pago</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                     </div>
+
                                     <div class="modal-body">
+                                        <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                                            <label class="btn btn-outline-primary" for="btnradio1">Interés</label>
+                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                                            <label class="btn btn-outline-primary" for="btnradio2">Abono</label>
+                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                                            <label class="btn btn-outline-primary" for="btnradio3">Liquidar</label>
+                                        </div>
+
                                         <div class="mb-3">
                                             <label for="monto" class="form-label">Monto del Pago</label>
-                                            <div class="input-group mb-3">
+
+                                            <!-- Campo de Interés (visible por defecto) -->
+                                            <div class="input-group mb-3" id="interes-group">
                                                 <span class="input-group-text">$</span>
                                                 <input type="number"
-                                                    name="monto"
+                                                    name="interes"
                                                     step="0.01"
                                                     class="form-control"
                                                     required
-                                                    placeholder="${{ number_format($interesTotal, 0) }}" 
-                                                value="{{ old('monto', number_format($interesTotal, 2, '.', '')) }}"> <!-- 2 decimales en value -->
+                                                    placeholder="${{ number_format($interesTotal, 0) }}"
+                                                    value="{{ old('interes', number_format($interesTotal, 2, '.', '')) }}">
+                                            </div>
+
+                                            <!-- Campo de Abono (oculto por defecto) -->
+                                            <div class="input-group mb-3" id="abono-group" style="display: none;">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number"
+                                                    name="abono"
+                                                    step="0.01"
+                                                    class="form-control"
+                                                    required
+                                                    placeholder="Cantidad a abonar al prestamo"
+                                                    value="">
+                                            </div>
+
+                                            <!-- Campo de Liquidar (oculto por defecto) -->
+                                            <div class="input-group mb-3" id="liquidar-group" style="display: none;">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number"
+                                                    name="liquidar"
+                                                    step="0.01"
+                                                    class="form-control"
+                                                    required
+                                                    placeholder="Liquidar el prestamo"
+                                                    value="">
                                             </div>
                                         </div>
+
                                         <div class="mb-3">
                                             <label for="fecha_pago" class="form-label">Fecha de Pago</label>
                                             <input type="date" name="fecha_pago" class="form-control" value="{{ date('Y-m-d') }}" required>
                                         </div>
                                     </div>
+
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                         <button type="submit" class="btn btn-primary">Registrar Pago</button>
                                     </div>
                                 </div>
                             </form>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const form = document.getElementById('pagoForm');
+                                    const radios = document.querySelectorAll('input[name="btnradio"]');
+
+                                    radios.forEach(radio => {
+                                        radio.addEventListener('change', function() {
+                                            // Deshabilitar todos los campos primero
+                                            document.querySelectorAll('[name="interes"], [name="abono"], [name="liquidar"]').forEach(input => {
+                                                input.disabled = true;
+                                                input.removeAttribute('required');
+                                            });
+
+                                            // Habilitar y hacer required solo el campo seleccionado
+                                            if (this.id === 'btnradio1') {
+                                                document.querySelector('[name="interes"]').disabled = false;
+                                                document.querySelector('[name="interes"]').setAttribute('required', 'required');
+                                            } else if (this.id === 'btnradio2') {
+                                                document.querySelector('[name="abono"]').disabled = false;
+                                                document.querySelector('[name="abono"]').setAttribute('required', 'required');
+                                            } else if (this.id === 'btnradio3') {
+                                                document.querySelector('[name="liquidar"]').disabled = false;
+                                                document.querySelector('[name="liquidar"]').setAttribute('required', 'required');
+                                            }
+                                        });
+                                    });
+
+                                    // Inicializar el estado
+                                    document.querySelector('input[name="btnradio"]:checked').dispatchEvent(new Event('change'));
+                                });
+                            </script>
                         </div>
                     </div>
 
@@ -348,39 +419,37 @@
                             <p>No hay pagos registrados aún.</p>
                             @else
                             <table class="table table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Monto</th>
-                                        <th>Fecha de Pago</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($prestamo->pagos as $pago)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>${{ number_format($pago->monto) }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}</td>
-                                        <td>
-                                            <form action="{{ route('pagos.destroy', $pago) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este pago?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger"
-                                                    @if($prestamo->estado === 'pagado') disabled @endif
-                                                    >Eliminar</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Total Pagado</th>
-                                        <th colspan="3">${{ number_format($prestamo->pagos->sum('monto')) }}</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Monto</th>
+            <th>Tipo de Pago</th>
+            <th>Fecha de Pago</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($prestamo->pagos as $pago)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>${{ number_format($pago->monto) }}</td>
+            <td>
+                @if($pago->tipo_pago === 'interes')
+                    Interés
+                @elseif($pago->tipo_pago === 'abono')
+                    Abono
+                @else
+                    Liquidación
+                @endif
+            </td>
+            <td>{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}</td>
+            <td>
+                <!-- ... acciones ... -->
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
                             @endif
                         </div>
                     </div>
@@ -640,6 +709,23 @@
 
         const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
         sparkline3.render();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('input[name="btnradio"]').change(function() {
+                $('#interes-group, #abono-group, #liquidar-group').hide();
+
+                if ($('#btnradio1').is(':checked')) {
+                    $('#interes-group').show();
+                } else if ($('#btnradio2').is(':checked')) {
+                    $('#abono-group').show();
+                } else if ($('#btnradio3').is(':checked')) {
+                    $('#liquidar-group').show();
+                }
+            });
+        });
     </script>
     <!--end::Script-->
 </body>
