@@ -49,10 +49,6 @@ Route::middleware('auth')->group(function () {
         return view('prestamos_menu'); 
     })->name('prestamos_menu');
 
-    Route::get('/pago', function () {
-        return view('pago'); 
-    })->name('pago');
-
     // Ruta básica
     Route::resource('clientes', ClienteController::class);
     Route::resource('prestamos', PrestamoController::class);

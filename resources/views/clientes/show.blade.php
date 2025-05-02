@@ -131,105 +131,105 @@
         <!--end::Header-->
         <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-            <!--begin::Sidebar Brand-->
-            <div class="sidebar-brand">
-                <!--begin::Brand Link-->
-                <a href="{{ route('dashboard') }}" class="brand-link">
-                    <!--begin::Brand Image-->
-                    <img
-                        src="../../dist/assets/img/AdminLTELogo.png"
-                        alt="AdminLTE Logo"
-                        class="brand-image opacity-75 shadow" />
-                    <!--end::Brand Image-->
-                    <!--begin::Brand Text-->
-                    <span class="brand-text fw-light">Edoiaza</span>
-                    <!--end::Brand Text-->
-                </a>
-                <!--end::Brand Link-->
-            </div>
-            <!--end::Sidebar Brand-->
-            <!--begin::Sidebar Wrapper-->
-            <div class="sidebar-wrapper">
-                <nav class="mt-2">
-                    <!--begin::Sidebar Menu-->
-                    <ul
-                        class="nav sidebar-menu flex-column"
-                        data-lte-toggle="treeview"
-                        role="menu"
-                        data-accordion="false">
+      <!--begin::Sidebar Brand-->
+      <div class="sidebar-brand">
+        <!--begin::Brand Link-->
+        <a href="{{ route('dashboard') }}" class="brand-link">
+          <!--begin::Brand Image-->
+          <img
+            src="../../dist/assets/img/AdminLTELogo.png"
+            alt="AdminLTE Logo"
+            class="brand-image opacity-75 shadow" />
+          <!--end::Brand Image-->
+          <!--begin::Brand Text-->
+          <span class="brand-text fw-light">Edoiaza</span>
+          <!--end::Brand Text-->
+        </a>
+        <!--end::Brand Link-->
+      </div>
+      <!--end::Sidebar Brand-->
+      <!--begin::Sidebar Wrapper-->
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <!--begin::Sidebar Menu-->
+          <ul
+            class="nav sidebar-menu flex-column"
+            data-lte-toggle="treeview"
+            role="menu"
+            data-accordion="false">
 
-                        <li class="nav-header">TAREAS</li>
+            <li class="nav-header">TAREAS</li>
 
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon bi bi-speedometer"></i>
-                                <p>
-                                    Clientes
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('clientes.create') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Nuevo cliente</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('clientes.index') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Ver clientes</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon bi bi-speedometer"></i>
+                <p>
+                  Clientes
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('clientes.create') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Nuevo cliente</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('clientes.index') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver clientes</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-pencil-square"></i>
-                                <p>
-                                    Prestamos
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('prestamos.create') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Nuevo prestamo</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('prestamos.index') }}" class="nav-link active">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Ver prestamos</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-table"></i>
-                                <p>
-                                    Tables
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./tables/simple.html" class="nav-link">
-                                        <i class="nav-icon bi bi-circle"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!--end::Sidebar Menu-->
-                </nav>
-            </div>
-            <!--end::Sidebar Wrapper-->
-        </aside>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-pencil-square"></i>
+                <p>
+                  Prestamos
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('prestamos.create') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Nuevo prestamo</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('prestamos.index') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Ver prestamos</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-table"></i>
+                <p>
+                  Tables
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./tables/simple.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Simple Tables</p>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+          </ul>
+          <!--end::Sidebar Menu-->
+        </nav>
+      </div>
+      <!--end::Sidebar Wrapper-->
+    </aside>
         <!--end::Sidebar-->
         <!--begin::App Main-->
         <main class="app-main">
@@ -269,7 +269,30 @@
                     <hr>
 
                     <h4>Préstamos</h4>
-                    <a href="{{ route('prestamos.create', ['cliente_id' => $cliente->id]) }}" class="btn btn-sm btn-primary mb-2">Nuevo Préstamo</a>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <!-- Botón "Nuevo Préstamo" con las mismas clases que los radio buttons -->
+                        <a href="{{ route('prestamos.create', ['cliente_id' => $cliente->id]) }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i> Nuevo Préstamo
+                        </a>
+
+                        <!-- Radio buttons (sin cambios) -->
+                        <div class="btn-group flex-wrap" role="group" aria-label="Filtros de estado">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked value="todos">
+                            <label class="btn btn-outline-primary" for="btnradio1">
+                                <i class="bi bi-list-check me-1"></i> Todos
+                            </label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="pendiente">
+                            <label class="btn btn-outline-primary" for="btnradio2">
+                                <i class="bi bi-clock-history me-1"></i> Pendientes
+                            </label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="pagado">
+                            <label class="btn btn-outline-primary" for="btnradio3">
+                                <i class="bi bi-check-circle me-1"></i> Pagados
+                            </label>
+                        </div>
+                    </div>
 
                     <table class="table table-striped" id="prestamosTable">
                         <thead>
@@ -281,7 +304,7 @@
                         </thead>
                         <tbody>
                             @foreach ($cliente->prestamos as $prestamo)
-                            <tr>
+                            <tr class="prestamo-row" data-estado="{{ $prestamo->estado }}">
                                 <td>${{ number_format($prestamo->monto, 2) }}</td>
                                 <td>
                                     @if($prestamo->estado == 'pagado')
@@ -570,6 +593,32 @@
         $('#clientesTable').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+            }
+        });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Escuchar cambios en los radio buttons
+        $('input[name="btnradio"]').change(function() {
+            const estadoSeleccionado = $(this).val();
+
+            // Mostrar todas las filas si es "todos"
+            if (estadoSeleccionado === 'todos') {
+                $('.prestamo-row').show();
+            }
+            // Filtrar por estado si no es "todos"
+            else {
+                $('.prestamo-row').each(function() {
+                    const estadoPrestamo = $(this).data('estado');
+                    if (estadoPrestamo === estadoSeleccionado) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
             }
         });
     });
